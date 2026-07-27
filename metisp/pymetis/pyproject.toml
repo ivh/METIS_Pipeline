@@ -10,16 +10,24 @@ license = {text = "GPLv3"}
 readme = "README.md"
 requires-python = ">=3.11, <3.14"
 dependencies = [
-  "pycpl==1.0.3.post11",   # prefer ivh's re-packaged pycpl
+  "pycpl>=1.0.3.post11",
   "edps",
   "pyesorex",
   "adari_core",
+  "edpsgui>=0.8.0",
+  "edpsplot>=0.2.1",
+]
+
+[project.urls]
+Homepage = "https://www.eso.org/sci/software/pipelines/"
+
+[project.optional-dependencies]
+doc = [
+    "sphinx",
 ]
 
 [dependency-groups]
-dev = [
-    "pytest (>=9.0.1,<10.0.0)"
-]
+dev = ["pytest"]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -31,7 +39,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-pycpl = { version = "1.0.3.post4", source = "ivh" }
+pycpl = { version = ">=1.0.3.post11", source = "ivh" }
 pyesorex = { source = "eso" }
 edps = { source = "eso" }
 adari_core = { source = "eso" }
@@ -45,6 +53,27 @@ priority = "explicit"
 name = "ivh"
 url = "https://ivh.github.io/pycpl/simple/"
 priority = "explicit"
+
+[[tool.uv.index]]
+name = "pycpl"
+url = "https://ivh.github.io/pycpl/simple/"
+explicit = true
+
+[[tool.uv.index]]
+name = "eso"
+url = "https://ftp.eso.org/pub/dfs/pipelines/libraries/"
+explicit = true
+
+[tool.uv.sources]
+pycpl = { index = "pycpl" }
+pyesorex = { index = "eso" }
+edps = { index = "eso" }
+edpsgui = { index = "eso" }
+edpsplot = { index = "eso" }
+adari_core = { index = "eso" }
+
+[tool.uv]
+constraint-dependencies = ["numba>=0.60"]
 
 [tool.pytest.ini_options]
 addopts = "--strict-markers"
