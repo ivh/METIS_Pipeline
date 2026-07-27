@@ -17,6 +17,16 @@ dependencies = [
   "numpy",
   "scipy",
   "astropy",
+  "edpsgui>=0.8.0",
+  "edpsplot>=0.2.1",
+]
+
+[project.urls]
+Homepage = "https://www.eso.org/sci/software/pipelines/"
+
+[project.optional-dependencies]
+doc = [
+    "sphinx",
 ]
 
 [dependency-groups]
@@ -38,6 +48,8 @@ packages = [
 pycpl = { index = "ivh" }
 pyesorex = { index = "eso" }
 edps = { index = "eso" }
+edpsgui = { index = "eso" }
+edpsplot = { index = "eso" }
 adari_core = { index = "eso" }
 
 [[tool.uv.index]]
@@ -49,6 +61,9 @@ priority = "explicit"
 name = "ivh"
 url = "https://ivh.github.io/pycpl/simple/"
 priority = "explicit"
+
+[tool.uv]
+constraint-dependencies = ["numba>=0.60"]
 
 [tool.ruff]
 line-length = 120
